@@ -2,7 +2,7 @@ name: Daily AI Agents Digest
 
 on:
   schedule:
-    - cron: '30 12 * * *'
+    - cron: '10 17 * * *'
 
 jobs:
   run-digest:
@@ -24,15 +24,15 @@ jobs:
 
     - name: Run the daily digest script
       env:
-        GEMINI_API_KEY_naikshriyans: ${{ secrets.GEMINI_API_KEY_naikshriyans }}
-        GEMINI_API_KEY_shriyansnaik: ${{ secrets.GEMINI_API_KEY_shriyansnaik }}
-        GEMINI_API_KEY_adityapatil: ${{ secrets.GEMINI_API_KEY_adityapatil }}
-        GEMINI_API_KEY_akshatsharma: ${{ secrets.GEMINI_API_KEY_akshatsharma }}
-        GEMINI_API_KEY_glacias: ${{ secrets.GEMINI_API_KEY_glacias }}
-        GEMINI_API_KEY_jbeans: ${{ secrets.GEMINI_API_KEY_jbeans }}
-        GEMINI_API_KEY_somaiya: ${{ secrets.GEMINI_API_KEY_somaiya }}
-        GEMINI_API_KEY_splitit: ${{ secrets.GEMINI_API_KEY_splitit }}
-        GEMINI_API_KEY_shriyansresearch: ${{ secrets.GEMINI_API_KEY_shriyansresearch }}
+        GEMINI_API_KEY_NAIKSHRIYANS: ${{ secrets.GEMINI_API_KEY_NAIKSHRIYANS }}
+        GEMINI_API_KEY_shriyansnaik: ${{ secrets.GEMINI_API_KEY_SHRIYANSNAIK }}
+        GEMINI_API_KEY_adityapatil: ${{ secrets.GEMINI_API_KEY_ADITYAPATIL }}
+        GEMINI_API_KEY_akshatsharma: ${{ secrets.GEMINI_API_KEY_AKSHATSHARMA }}
+        GEMINI_API_KEY_glacias: ${{ secrets.GEMINI_API_KEY_GLACIAS }}
+        GEMINI_API_KEY_jbeans: ${{ secrets.GEMINI_API_KEY_JBEANS }}
+        GEMINI_API_KEY_somaiya: ${{ secrets.GEMINI_API_KEY_SOMAIYA }}
+        GEMINI_API_KEY_splitit: ${{ secrets.GEMINI_API_KEY_SPLITIT }}
+        GEMINI_API_KEY_shriyansresearch: ${{ secrets.GEMINI_API_KEY_SHRIYANSRESEARCH }}
         GEMINI_BASE_API: ${{ secrets.GEMINI_BASE_API }}
         SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
         SENDER_EMAIL_PASSWORD: ${{ secrets.SENDER_EMAIL_PASSWORD }}
