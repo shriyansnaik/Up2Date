@@ -6,6 +6,7 @@ import random
 import time
 from tqdm import tqdm
 import dspy
+import os
 
 import smtplib
 from email.mime.text import MIMEText
@@ -50,7 +51,6 @@ def getLinkContent(google_alert_data):
 
 def fetchArticleHTML(article_link, min_delay=2, max_delay=5):
     try:
-        # Introduce random delay between requests
         delay = random.uniform(min_delay, max_delay)
         time.sleep(delay)
 
@@ -89,25 +89,20 @@ def parseLinkContentHelper(html_text):
     }
 
 
-lm = dspy.LM('llama-3.3-70b-versatile',
-             api_key='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',
-             api_base='https://api.groq.com/openai/v1')
-dspy.configure(lm=lm)
-
-
 class ExtractSummary(dspy.Signature):
     """Extract summary from text."""
 
     text: str = dspy.InputField()
     summary: str = dspy.OutputField(
-        desc="a short 50 word summary covering all the essential information")
+        desc="A short 50 word summary. It should just give a gist of what the article is about.")
 
 
+dspy.configure(lm=LMS[-1])
 summarizer = dspy.Predict(ExtractSummary)
 
 
 def summarizeContent(parsed_contents):
-    for i, content in tqdm(enumerate(parsed_contents), total=len(parsed_contents), desc="Summarizing"):
+    for i, content in tqdm(enumerate(parsed_contents), total=len(parsed_contents)):
         lm_to_use = i % len(LMS)
         dspy.configure(lm=LMS[lm_to_use])
 
@@ -147,8 +142,8 @@ def format_newsletter_content(alerts):
     return html_content
 
 def send_email(to_email, subject, body, smtp_server='smtp.gmail.com', smtp_port=587):
-    from_email = 'shriyans.research@gmail.com'
-    password = 'odyz sfjp yusc kkbn'  
+    from_email = os.environ['SENDER_EMAIL']
+    password = os.environ['SENDER_EMAIL_PASSWORD']  
 
     msg = MIMEMultipart()
     msg['From'] = from_email

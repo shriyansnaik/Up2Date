@@ -1,46 +1,47 @@
 import dspy
+import os
 
 naikshriyans = dspy.LM("openai/gemini-2.0-flash",
-                       api_key="AIzaSyAv8Y1X866fH1Kb-058i7N-ywUvxiRH_FQ",
-                       base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                       api_key=os.environ['GEMINI_API_KEY_naikshriyans'],
+                       base_url=os.environ['GEMINI_BASE_API']
                        )
 
 shriyansnaik = dspy.LM("openai/gemini-2.0-flash",
-                       api_key="AIzaSyDSopgmBevDDmefNpmblQ_v9s4MyWx45mQ",
-                       base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                       api_key=os.environ['GEMINI_API_KEY_shriyansnaik'],
+                       base_url=os.environ['GEMINI_BASE_API']
                        )
 
 adityapatil = dspy.LM("openai/gemini-2.0-flash",
-                      api_key="AIzaSyCoCYP5cEjZ9OQ4XO7PwhwSuvoBBP6RErI",
-                      base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                      )
+                       api_key=os.environ['GEMINI_API_KEY_adityapatil'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
 
 akshatsharma = dspy.LM("openai/gemini-2.0-flash",
-                       api_key="AIzaSyBkgcRNpU8bgXEMgyPW86Yizc1a21qyHvI",
-                       base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+                       api_key=os.environ['GEMINI_API_KEY_akshatsharma'],
+                       base_url=os.environ['GEMINI_BASE_API']
                        )
 
 glacias = dspy.LM("openai/gemini-2.0-flash",
-                  api_key="AIzaSyApHfhSa1lofB2y7_Olys31JTkjLFbDZoY",
-                  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                  )
+                       api_key=os.environ['GEMINI_API_KEY_glacias'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
 
 jbeans = dspy.LM("openai/gemini-2.0-flash",
-                 api_key="AIzaSyBEbhi32JemcQrLhTCfUxCcj9l00Z-jC8I",
-                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                 )
+                       api_key=os.environ['GEMINI_API_KEY_jbeans'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
 
 somaiya = dspy.LM("openai/gemini-2.0-flash",
-                  api_key="AIzaSyChCaW4kevXXJ2PLF3_UEuW_V3YzedJNss",
-                  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                  )
+                       api_key=os.environ['GEMINI_API_KEY_somaiya'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
 
 splitit = dspy.LM("openai/gemini-2.0-flash",
-                  api_key="AIzaSyD2RE4lX-44FcnapM7pszQqQ71R-NuBs9w",
-                  base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                  )
+                       api_key=os.environ['GEMINI_API_KEY_splitit'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
 
 shriyansresearch = dspy.LM("openai/gemini-2.0-flash",
-                           api_key="AIzaSyDhgwaqhuKtza8Rio__dyyl5deqPgWkIWs",
-                           base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                           )
+                       api_key=os.environ['GEMINI_API_KEY_shriyansresearch'],
+                       base_url=os.environ['GEMINI_BASE_API']
+                       )
