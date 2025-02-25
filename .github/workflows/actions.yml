@@ -3,6 +3,9 @@ name: Daily AI Agents Digest
 on:
   schedule:
     - cron: '10 4 * * *'
+
+  # Manually trigger the workflow
+  workflow_dispatch:  # This enables the manual trigger
     
 jobs:
   run-digest:
