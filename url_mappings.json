@@ -1,0 +1,36 @@
+{
+  "url_mappings": {
+    "e4ab286cc1": {
+      "original_url": "https://bytes.swiggy.com/tagged/swiggy-data-science",
+      "parsed_data": [
+        [
+          [
+            "div",
+            "streamItem streamItem--postPreview js-streamItem"
+          ],
+          [
+            [
+              "h3",
+              "graf graf--h3 graf-after--figure graf--title"
+            ],
+            [
+              "a",
+              ""
+            ],
+            [
+              "",
+              ""
+            ],
+            [
+              "time",
+              ""
+            ]
+          ]
+        ]
+      ]
+    }
+  },
+  "original_url_to_hash": {
+    "https://bytes.swiggy.com/tagged/swiggy-data-science": "e4ab286cc1"
+  }
+}

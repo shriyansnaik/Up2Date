@@ -36,5 +36,6 @@ jobs:
         GEMINI_BASE_API: ${{ secrets.GEMINI_BASE_API }}
         SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
         SENDER_EMAIL_PASSWORD: ${{ secrets.SENDER_EMAIL_PASSWORD }}
-        MAIL_LIST: ${{ secrets.MAIL_LIST }}
+        AGENT_MAIL_LIST: ${{ secrets.AGENT_MAIL_LIST }}
+        KAVERI: ${{ secrets.KAVERI }}
       run: python main.py

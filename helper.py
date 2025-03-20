@@ -99,7 +99,7 @@ class ExtractSummary(dspy.Signature):
 
 dspy.configure(lm=LMS[-1])
 summarizer = dspy.Predict(ExtractSummary)
-
+    
 
 def summarizeContent(parsed_contents):
     for i, content in tqdm(enumerate(parsed_contents), total=len(parsed_contents)):
@@ -129,6 +129,35 @@ def format_newsletter_content(alerts):
     <body>
         <h1>📰 AI Agents Alert Digest</h1>
         <p>Here's a summary of the latest articles related to AI agents.</p>
+    """
+    
+    for alert in alerts:
+        html_content += f"""
+        <div class="content-block">
+            <h2><a href="{alert['link']}" target="_blank">{alert['content']['title']}</a></h2>
+            <p>{alert['summary']}</p>
+        </div>
+        """
+    
+    return html_content
+
+def format_kaveri_newsletter_content(alerts):
+    
+    html_content = """
+    <html>
+    <head>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h2 { color: #2a9d8f; }
+            p { font-size: 16px; line-height: 1.5; color: #333; }
+            .content-block { border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-bottom: 20px; }
+            a { text-decoration: none; color: #0077cc; }
+            a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <h1>📰 Indian Equity Market News</h1>
+        <p>Hey Kaveri, Here's Today's Update on the Indian Equity Markets</p>
     """
     
     for alert in alerts:
