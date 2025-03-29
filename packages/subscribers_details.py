@@ -7,5 +7,12 @@ subscriber_details = {
         ],
         "publish": True
     },
+    "indian equity market": {
+        "name": "Indian Equity Market",
+        "subscribers": [
+            "hule.kaveri@gmail.com"
+        ],
+        "publish": False
+    }
 
 }
