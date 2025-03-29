@@ -25,7 +25,7 @@ def fetch_and_delete_firestore_links():
                     result[keyword] = []
                 result[keyword].extend(links)
         
-        # for doc_id in docs_to_delete:
-        #     collection.document(doc_id).delete()
+        for doc_id in docs_to_delete:
+            collection.document(doc_id).delete()
     
     return result
