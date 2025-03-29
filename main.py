@@ -51,6 +51,7 @@ for alert_keyword, links in alert_links.items():
                                    newsletter_title=newsletter_title,
                                    articles=articles)
 
+    print("Sending emails to subscribers")
     for subscriber_email in mailing_list:
         send_email(subscriber_email=subscriber_email,
                    newsletter_title=newsletter_title,

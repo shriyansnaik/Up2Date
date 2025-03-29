@@ -3,10 +3,9 @@ subscriber_details = {
         "name": "New LLM models",
         "subscribers": [
             "shriyans.newsletter@gmail.com",
-            "shriyansnaik@gmail.com"
+            "warale.riddhi22@gmail.com",
         ],
         "publish": True
     },
-    
 
 }
