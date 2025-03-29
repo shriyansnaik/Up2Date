@@ -1,40 +1,61 @@
-from helper import fetchGoogleAlert, getLinkContent, parseLinkContent, summarizeContent, format_newsletter_content, send_email, format_kaveri_newsletter_content
-import os
+from tqdm import tqdm
+import time
+import random
 
-rss_feed_url = 'https://www.google.co.in/alerts/feeds/14281887962566473241/7938470061037680642'
+from packages.firebase_helper import fetch_and_delete_firestore_links
+from packages.subscribers_details import subscriber_details
+from packages.utils import link_parser, fetch_page_content, format_newsletter, send_email
+from packages.ai import summarise_page_content, generate_news_letter_title
 
-google_alert_data = fetchGoogleAlert(rss_feed_url)
+print("Execution started...")
+alert_links = fetch_and_delete_firestore_links()
+print("Alerts data fetched from firestore...")
 
-raw_contents = getLinkContent(google_alert_data)
+for alert_keyword, links in alert_links.items():
+    details = subscriber_details.get(alert_keyword, None)
+    if not details:
+        print(f"Skipping '{alert_keyword}'\nAdd subscriber details in packages/subscriber_details.py")
+        continue
 
-parsed_contents = parseLinkContent(raw_contents)
+    newsletter_name, mailing_list = details['name'], details['subscribers']
+    publish = details.get("publish", False)
 
-summarised_contents = summarizeContent(parsed_contents)
+    print(f"Generating newletter for {newsletter_name}")
+    articles = []
+    for link in tqdm(links):
+        article = {}
+        link = link_parser(link)
+        if not link:
+            continue
 
-html_formatted_newsletter = format_newsletter_content(summarised_contents)
+        page_content = fetch_page_content(link)
+        if not page_content:
+            continue
 
-mailing_list = os.getenv("AGENT_MAIL_LIST").split(",")
+        title, summary = summarise_page_content(page_content)
 
-for email in mailing_list:
-    send_email(email,
-               "Daily AI Agents Digest",
-               html_formatted_newsletter)
+        article['title'] = title
+        article['summary'] = summary
+        article['link'] = link
 
-rss_feed_url = "https://www.google.co.in/alerts/feeds/14281887962566473241/5523182970888272628"
+        articles.append(article)
 
-google_alert_data = fetchGoogleAlert(rss_feed_url)
+        # to avoid rate limit from fetching
+        time.sleep(random.uniform(2, 5))
 
-raw_contents = getLinkContent(google_alert_data)
 
-parsed_contents = parseLinkContent(raw_contents)
+    list_of_titles = [article['title'] for article in articles]
+    newsletter_title = generate_news_letter_title(list_of_titles)
 
-summarised_contents = summarizeContent(parsed_contents)
+    newsletter = format_newsletter(newsletter_name=newsletter_name,
+                                   newsletter_title=newsletter_title,
+                                   articles=articles)
 
-mailing_list = os.getenv("KAVERI").split(",")
+    for subscriber_email in mailing_list:
+        send_email(subscriber_email=subscriber_email,
+                   newsletter_title=newsletter_title,
+                   newsletter=newsletter)
+    
 
-html_formatted_newsletter = format_kaveri_newsletter_content(summarised_contents)
-
-for email in mailing_list:
-    send_email(email,
-               "Indian Equity Market News",
-               html_formatted_newsletter)
+    # if publish is true, upload to firebase from 
+    # where shriyansnaik.vercel.app will pull it and display

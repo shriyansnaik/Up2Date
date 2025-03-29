@@ -1,4 +1,0 @@
-# fetch from all sources
-# filter based on interest using LLM
-# compile newsletter
-# send on email and add to website

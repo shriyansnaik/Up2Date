@@ -2,3 +2,4 @@ bs4
 dspy
 feedparser
 requests
+firebase-admin

@@ -13,7 +13,10 @@ def amazon(url="https://www.amazon.science/blog?q=&f0=0000016e-2ff0-da81-a5ef-3f
         list: A list of dictionaries containing title, link, date, and description
     """
     # Fetch the HTML content
-    response = requests.get(url)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+    response = requests.get(url, headers=headers)
     html = response.text
     
     # Parse the HTML
