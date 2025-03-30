@@ -11,6 +11,7 @@ subscriber_details = {
     "indian equity market": {
         "name": "Indian Equity Market",
         "subscribers": [
+            "shriyans.newsletter@gmail.com",
             "hule.kaveri@gmail.com"
         ],
         "publish": False
