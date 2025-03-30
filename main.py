@@ -22,6 +22,7 @@ for alert_keyword, links in alert_links.items():
 
     print(f"Generating newletter for {newsletter_name}")
     articles = []
+    links = list(set(links))
     for link in tqdm(links):
         article = {}
         link = link_parser(link)
