@@ -4,6 +4,7 @@ subscriber_details = {
         "subscribers": [
             "shriyans.newsletter@gmail.com",
             "warale.riddhi22@gmail.com",
+            "Raghuram.velega@ril.com"
         ],
         "publish": True
     },
