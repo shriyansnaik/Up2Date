@@ -1,6 +1,6 @@
 subscriber_details = {
-    "llm model released": {
-        "name": "New LLM models",
+    "generative ai": {
+        "name": "Generative AI",
         "subscribers": [
             "shriyans.newsletter@gmail.com",
             "warale.riddhi22@gmail.com",
