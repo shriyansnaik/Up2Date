@@ -41,4 +41,5 @@ jobs:
         SENDER_EMAIL_PASSWORD: ${{ secrets.SENDER_EMAIL_PASSWORD }}
         AGENT_MAIL_LIST: ${{ secrets.AGENT_MAIL_LIST }}
         KAVERI: ${{ secrets.KAVERI }}
+        FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
       run: python main.py
