@@ -1,11 +1,18 @@
+import os
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 
 def fetch_and_delete_firestore_links():
-    cred = credentials.Certificate("alerts-data-firebase-adminsdk-fbsvc-dd63c25b81.json")
+    cred_json = os.environ.get("FIREBASE_CREDENTIALS")
+    if not cred_json:
+        raise ValueError("FIREBASE_CREDENTIALS environment variable not set")
+
+    cred_dict = json.loads(cred_json)
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
-    db = firestore.client()
     
+    db = firestore.client()
     collections = db.collections()
     result = {}
     
@@ -15,7 +22,6 @@ def fetch_and_delete_firestore_links():
         
         for doc in docs:
             docs_to_delete.append(doc.id)
-            
             data = doc.to_dict()
             keyword = data.get("keyword")
             links = data.get("links", [])
